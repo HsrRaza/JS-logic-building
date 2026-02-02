@@ -20,4 +20,4 @@ function isPalindrome(num){
 
 }
 
-console.log(isPalindrome(1213))
+console.log(isPalindrome(10))

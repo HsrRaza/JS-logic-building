@@ -33,4 +33,4 @@ function secondLargest(arr){
     return secondLargest
     
 }
-console.log(secondLargest([8,3,5,9,11]));
+console.log(secondLargest(["dfa12321afd"]));
