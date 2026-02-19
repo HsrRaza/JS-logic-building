@@ -62,6 +62,53 @@ class LinkedList {
         this.size++;
     }
 
+    insert(value, index){
+        if(index< 0 || index > this.size ) return; // if the index is less than 0 or greater than the size of the linked list, then we can't insert the node at that index, so we return from the function
+
+        if(index === 0){ // if the index is 0, then we can directly add a node at the start of the linked list by calling the prepend function
+
+            this.prepend(value);
+        }else {
+            const node= new Node(value);
+            let prev = this.head;
+
+            for(let i=0; i<index-1;i++ ){
+                prev = prev.next; // traverse the linked list until we reach the node at index-1, which is the node before the index where we want to insert the new node, and then we can add the new node at that index by assigning the next pointer of the new node to the next pointer of the prev node and then assigning the next pointer of the prev node to the new node.
+            }
+            node.next = prev.next; // assign the next pointer of the new node to the next pointer of the prev node
+            prev.next = node; // assign the next pointer of the prev node to the new node
+
+            this.size++;
+        }
+
+            
+
+    }
+
+    removeFrom(index){
+        if(index < 0 || index >= this.size ){
+            return null
+        }    
+        
+        let removedNode;
+        if(index === 0){
+            removedNode = this.head 
+            this.head = this.head.next
+        } else {
+            let prev = this.head;
+            for(let i = 0 ; i < index -1 ; i++){
+                prev = prev.next;
+            }
+            removedNode = prev.next;
+            prev.next = removedNode.next
+        }
+        this.size--;
+        return removedNode.value;
+
+
+    }
+        
+
     print(){
         if(this.isEmpty()){
             console.log("List is Empty ");
@@ -86,11 +133,26 @@ console.log("List size  : ", list.getSize());
 
 // list.prepend();
 list.print();
-
-list.append(10)
-list.print();
-
-list.append(20)
-list.append(30)
+list.insert(10,0);
 
 list.print();
+
+list.insert(20,0);
+list.print();
+
+list.insert(30,1);
+list.print();
+
+list.insert(40,2);
+list.print();
+
+console.log(list.getSize());
+
+console.log(list.removeFrom(10));
+console.log(list.removeFrom(0));
+list.print();
+
+console.log(list.removeFrom(1));
+
+list.print();
+console.log(list.getSize());
