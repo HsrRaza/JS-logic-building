@@ -131,6 +131,18 @@ class LinkedList {
             return null;
         }
     }
+    middleNode(){
+        if(this.isEmpty()){
+            return null;
+        }
+        let slow = this.head;
+        let fast = this.head;
+        while(fast &&fast.next){
+            slow= slow.next;
+            fast= fast.next.next;
+        }
+        return slow.value;
+    }
     print(){
         if(this.isEmpty()){
             console.log("List is Empty ");
@@ -154,21 +166,13 @@ console.log("List is Empty ? : ", list.isEmpty());
 console.log("List size  : ", list.getSize());
 
 // list.prepend();
-list.print();
-list.insert(10,0);
+list.append(1);
+list.append(2);
+list.append(3);
+list.append(4);
+list.append(5);
+
 
 list.print();
 
-list.insert(20,0);
-list.print();
-
-list.insert(30,1);
-list.print();
-
-list.insert(40,2);
-list.print();
-
-console.log(list.getSize());
-
-console.log(list.removeValue(40));
-list.print();
+console.log("Middle Node : ", list.middleNode());
